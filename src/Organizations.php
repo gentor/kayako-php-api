@@ -54,14 +54,23 @@ class Organizations
     }
 
     /**
-     * @param null $id
+     * @param array $ids
      * @return mixed
      */
-    public function details($id = null)
+    public function deleteByIds(array $ids)
     {
-        $endpoint = $id ? $this->endPoint . (int)$id : $this->endPoint;
+        $options = ['ids' => implode(',', $ids)];
 
-        return $this->client->get($endpoint);
+        return $this->client->delete($this->endPoint, $options);
+    }
+
+    /**
+     * @param array $options
+     * @return mixed
+     */
+    public function get(array $options = [])
+    {
+        return $this->client->get($this->endPoint, $options);
     }
 
     /**
@@ -70,7 +79,7 @@ class Organizations
      */
     public function find($id)
     {
-        return $this->details($id);
+        return $this->client->get($this->endPoint . '/' . (int)$id);
     }
 
     /**

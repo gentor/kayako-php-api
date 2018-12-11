@@ -50,18 +50,27 @@ class Users
      */
     public function delete($id)
     {
-        return $this->client->delete($this->endPoint . '/' .(int)$id);
+        return $this->client->delete($this->endPoint . '/' . (int)$id);
     }
 
     /**
-     * @param null $id
+     * @param array $ids
      * @return mixed
      */
-    public function details($id = null)
+    public function deleteByIds(array $ids)
     {
-        $endpoint = $id ? $this->endPoint . '/' . (int)$id : $this->endPoint;
+        $options = ['ids' => implode(',', $ids)];
 
-        return $this->client->get($endpoint);
+        return $this->client->delete($this->endPoint, $options);
+    }
+
+    /**
+     * @param array $options
+     * @return mixed
+     */
+    public function get(array $options = [])
+    {
+        return $this->client->get($this->endPoint, $options);
     }
 
     /**
@@ -70,7 +79,7 @@ class Users
      */
     public function find($id)
     {
-        return $this->details($id);
+        return $this->client->get($this->endPoint . '/' . (int)$id);
     }
 
     /**

@@ -90,7 +90,7 @@ class Client
      * @param array $options
      * @return mixed
      */
-    public function put($endpoint, array $options)
+    public function put($endpoint, array $options = [])
     {
         return $this->request('put', $endpoint, $options);
     }
@@ -99,9 +99,9 @@ class Client
      * @param $endpoint
      * @return mixed
      */
-    public function delete($endpoint)
+    public function delete($endpoint, array $options = [])
     {
-        return $this->request('delete', $endpoint);
+        return $this->request('delete', $endpoint, $options);
     }
 
     /**
@@ -118,7 +118,7 @@ class Client
         }
 
         $format = 'json';
-        if (strtolower($method) == 'get') {
+        if (in_array(strtolower($method), ['get', 'delete'])) {
             $format = 'query';
         }
 

@@ -48,20 +48,46 @@ class Cases
      * @param $id
      * @return mixed
      */
-    public function delete($id)
+    public function trash($id)
     {
-        return $this->client->delete($this->endPoint . '/' .(int)$id);
+        return $this->client->put($this->endPoint . '/' . (int)$id . '/trash');
     }
 
     /**
-     * @param null $id
+     * @param array $ids
      * @return mixed
      */
-    public function details($id = null)
+    public function trashByIds(array $ids)
     {
-        $endpoint = $id ? $this->endPoint . '/' . (int)$id : $this->endPoint;
+        $options = ['ids' => implode(',', $ids)];
 
-        return $this->client->get($endpoint);
+        return $this->client->put($this->endPoint . '/trash', $options);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function emptyTrash()
+    {
+        return $this->client->delete($this->endPoint . '/trash');
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function restore($id)
+    {
+        return $this->client->put($this->endPoint . '/' . (int)$id . '/restore');
+    }
+
+    /**
+     * @param array $options
+     * @return mixed
+     */
+    public function get(array $options = [])
+    {
+        return $this->client->get($this->endPoint, $options);
     }
 
     /**
@@ -70,7 +96,7 @@ class Cases
      */
     public function find($id)
     {
-        return $this->details($id);
+        return $this->client->get($this->endPoint . '/' . (int)$id);
     }
 
     /**
