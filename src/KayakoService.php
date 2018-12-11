@@ -34,6 +34,16 @@ class KayakoService
         return $this->client->organizations;
     }
 
+    public function cases()
+    {
+        return $this->client->cases;
+    }
+
+    public function webhook()
+    {
+        return $this->client->webhook;
+    }
+
     /**
      * @param       $method
      * @param array $args

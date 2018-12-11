@@ -3,10 +3,10 @@
 namespace Gentor\Kayako;
 
 /**
- * Class Organizations
+ * Class Cases
  * @package Gentor\Kayako
  */
-class Organizations
+class Cases
 {
     /** @var Client $client */
     private $client;
@@ -14,10 +14,10 @@ class Organizations
     /**
      * @var string
      */
-    protected $endPoint = 'api/v1/organizations';
+    protected $endPoint = 'api/v1/cases';
 
     /**
-     * Organizations constructor.
+     * Cases constructor.
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -50,7 +50,7 @@ class Organizations
      */
     public function delete($id)
     {
-        return $this->client->delete($this->endPoint . '/' . (int)$id);
+        return $this->client->delete($this->endPoint . '/' .(int)$id);
     }
 
     /**
@@ -59,7 +59,7 @@ class Organizations
      */
     public function details($id = null)
     {
-        $endpoint = $id ? $this->endPoint . (int)$id : $this->endPoint;
+        $endpoint = $id ? $this->endPoint . '/' . (int)$id : $this->endPoint;
 
         return $this->client->get($endpoint);
     }

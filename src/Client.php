@@ -27,7 +27,9 @@ class Client
 
     public $organizations;
 
-    public $events;
+    public $cases;
+
+    public $webhook;
 
     /**
      * Client constructor.
@@ -44,6 +46,8 @@ class Client
 
         $this->users = new Users($this);
         $this->organizations = new Organizations($this);
+        $this->cases = new Cases($this);
+        $this->webhook = new Webhook($this);
     }
 
     public function getToken()
