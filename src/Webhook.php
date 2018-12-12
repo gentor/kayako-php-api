@@ -5,6 +5,7 @@ namespace Gentor\Kayako;
 /**
  * Class Webhook
  * @package Gentor\Kayako
+ * @see https://developer.kayako.com/api/v1/event/events/#Incoming-webhook
  */
 class Webhook
 {

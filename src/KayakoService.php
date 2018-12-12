@@ -39,9 +39,24 @@ class KayakoService
         return $this->client->cases;
     }
 
+    public function emails()
+    {
+        return $this->client->emails;
+    }
+
+    public function phones()
+    {
+        return $this->client->phones;
+    }
+
     public function webhook()
     {
         return $this->client->webhook;
+    }
+
+    public function locales()
+    {
+        return $this->client->locales;
     }
 
     /**

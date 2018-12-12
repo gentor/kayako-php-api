@@ -3,11 +3,11 @@
 namespace Gentor\Kayako;
 
 /**
- * Class Users
+ * Class Phones
  * @package Gentor\Kayako
- * @see https://developer.kayako.com/api/v1/users/users/
+ * @see https://developer.kayako.com/api/v1/users/identities/#Phones
  */
-class Users
+class Phones
 {
     /** @var Client $client */
     private $client;
@@ -15,10 +15,10 @@ class Users
     /**
      * @var string
      */
-    protected $endPoint = 'api/v1/users';
+    protected $endPoint = 'api/v1/identities/phones';
 
     /**
-     * Users constructor.
+     * Phones constructor.
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -66,12 +66,12 @@ class Users
     }
 
     /**
-     * @param array $options
+     * @param $user_id
      * @return mixed
      */
-    public function get(array $options = [])
+    public function get($user_id)
     {
-        return $this->client->get($this->endPoint, $options);
+        return $this->client->get($this->endPoint, ['user_id' => $user_id]);
     }
 
     /**
@@ -81,20 +81,5 @@ class Users
     public function find($id)
     {
         return $this->client->get($this->endPoint . '/' . (int)$id);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function findByLegacyId($id)
-    {
-        $response = $this->client->get($this->endPoint, ['legacy_ids' => $id]);
-
-        if (!empty($response->total_count)) {
-            $response->data = $response->data[0];
-        }
-
-        return $response;
     }
 }

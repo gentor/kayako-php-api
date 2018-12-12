@@ -24,12 +24,12 @@ class Client
     protected $accessToken;
 
     public $users;
-
     public $organizations;
-
     public $cases;
-
+    public $emails;
+    public $phones;
     public $webhook;
+    public $locales;
 
     /**
      * Client constructor.
@@ -47,7 +47,10 @@ class Client
         $this->users = new Users($this);
         $this->organizations = new Organizations($this);
         $this->cases = new Cases($this);
+        $this->emails = new Emails($this);
+        $this->phones = new Phones($this);
         $this->webhook = new Webhook($this);
+        $this->locales = new Locales($this);
     }
 
     public function getToken()
@@ -68,11 +71,12 @@ class Client
     /**
      * @param $endpoint
      * @param array $query
+     * @param bool $requireToken
      * @return mixed
      */
-    public function get($endpoint, $query = [])
+    public function get($endpoint, $query = [], $requireToken = true)
     {
-        return $this->request('get', $endpoint, $query);
+        return $this->request('get', $endpoint, $query, $requireToken);
     }
 
     /**

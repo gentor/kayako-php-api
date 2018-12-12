@@ -5,6 +5,7 @@ namespace Gentor\Kayako;
 /**
  * Class Cases
  * @package Gentor\Kayako
+ * @see https://developer.kayako.com/api/v1/cases/cases/
  */
 class Cases
 {

@@ -5,6 +5,7 @@ namespace Gentor\Kayako;
 /**
  * Class Organizations
  * @package Gentor\Kayako
+ * @see https://developer.kayako.com/api/v1/users/organizations/
  */
 class Organizations
 {
